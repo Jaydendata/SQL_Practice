@@ -1,2 +1,2 @@
 # SQL_Practice
-SQL codes for daily practice
+SQL codes for genderal practice
