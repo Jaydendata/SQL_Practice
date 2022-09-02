@@ -59,6 +59,8 @@ WHERE total_cases >50000
 ORDER BY total_cases desc;
 
 
+--- Deal with NULL
+
 SELECT Location, total_cases, continent
 FROM covid
 WHERE continent = 'Europe' AND (total_cases IS NOT NULL)
@@ -72,6 +74,37 @@ ORDER BY total_cases asc
 LIMIT 3;
 
 --- Laos, Timor, Brunei
+
+"""
+Note that NULL = unkown/inapplicable in the ternary system.
+However, some time NULL has meaning as 'Not...'. 
+For example, if to filtering using pet's breed, NULL means it is not that breed.
+In this case, NULL rows should be returned instead of ignored. 
+Only in Postegres, the following functions are available:
+    - IN NOT TRUE
+    - IS DISCTINCT FROM
+"""
+SELECT *
+FROM Animals
+WHERE Breed != 'Bullmastiff'
+-- This will ignore NULL values, which is incorrect, instead:
+
+SELECT *
+FROM Animals
+WHERE Breed IS DISTINCT FROM 'Bullmastiff';
+
+-- OR
+
+SELECT *
+FROM Animals
+WHERE (Breed = 'Bullmastiff') IS NOT TRUE;
+
+
+
+
+
+
+
 
 
 
