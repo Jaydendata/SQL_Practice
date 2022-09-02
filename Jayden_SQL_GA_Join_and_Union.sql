@@ -1,4 +1,4 @@
--- SUPER Store data
+-- SUPER Store data (Postgres)
 
 --- JOIN
 
@@ -98,3 +98,5 @@ FROM orders AS o
 	RIGHT JOIN returns AS ret 
 	ON o.order_id = ret.order_id
 WHERE o.order_id IS NULL
+
+
