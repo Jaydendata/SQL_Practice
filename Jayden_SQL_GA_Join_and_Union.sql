@@ -67,6 +67,66 @@ ORDER BY SUM(r.return_quantity) DESC
 LIMIT 100
 
 
+-- Multiple Joins
+--- LinkedIn Advanced SQL: Logical Query Processing P1
+--- INNER JOIN Order may be followed in some SQL not SQL Server
+
+
+SELECT Foo, Bar
+FROM A INNER JOIN B
+		ON A.X = B.X
+	INNER JOIN C
+		ON C.Y = B.Y
+	INNER JOIN D
+		ON D.Z = D.Z
+
+
+---- Variation:
+
+SELECT Foo, Bar
+FROM A INNER JOIN 
+	B INNER JOIN
+		C INNER JOIN
+		D ON D.Z = C.Z
+	ON C.Y = B.Y
+ON A.X = B.X
+
+--- BUT, when add OUTER JOIN Order Does affect results
+
+SELECT Foo, Bar
+FROM A LEFT OUTER JOIN B
+		ON A.X = B.X
+	INNER JOIN C
+		ON C.Y = B.Y
+	INNER JOIN D
+		ON D.Z = D.Z
+
+
+'''
+This would not result in the row numbers in A
+Because Later null values in C and D will affect
+the total rows.
+
+Solution:
+While changing all joint to LEFT OUTER JOIN will work,
+It is recommended to put later parts into (), e.g.:
+'''
+
+SELECT Foo, Bar
+FROM A LEFT OUTER JOIN
+(	
+	B INNER JOIN C
+		ON C.Y = B.Y
+	INNER JOIN D
+		ON D.Z = D.Z
+)
+ON A.X = B.X
+
+
+
+
+
+
 --- UNION
 
 
