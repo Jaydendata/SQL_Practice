@@ -129,6 +129,11 @@ ON A.X = B.X
 
 --- UNION
 
+"""
+SET Operators - UNION, EXCEPT, INTERSECT
+They are different from JOIN, combine tables vertically
+
+"""
 
 
 SELECT COUNT(o.order_id)AS Number_of_sales, r.salesperson
@@ -158,5 +163,6 @@ FROM orders AS o
 	RIGHT JOIN returns AS ret 
 	ON o.order_id = ret.order_id
 WHERE o.order_id IS NULL
+
 
 
