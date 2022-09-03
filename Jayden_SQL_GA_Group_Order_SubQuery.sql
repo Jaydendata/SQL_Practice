@@ -84,7 +84,41 @@ FROM orders
 
 SELECT ROUND((4713/10292 :: numeric)*100,2)
 
--- OR Subquery
+-- OR 
+---Subquery
+
+"""
+Subquery specifics:
+	Table Expression (derived table)
+	Scalar Expression (one row with one column)
+	Row Expression (one row with one or more column)
+
+Subquery return a set, with no order
+
+Scalar: an element of field
+Vector: a quantity described by multiple scalars
+
+Non-correlated Subquery - standalone, independent of the parent/outer query
+	Example:
+
+	SELECT Foo,
+			(SELECT AVG(Foot)
+			From Bart
+			) AS Bar
+	FROM FooBar
+
+
+Correlated Subquery - not independent, draw from the outer query
+	Example:
+
+	SELECT Foo,
+			(SELECT AVG(Foot)
+			FROM Bart
+			WHERE Bart.Foot = Foodbar.Foo
+			) AS Bar
+	FROM Foobar
+
+"""
 
 SELECT
 (SELECT COUNT(product_id) AS number_met_threshold
