@@ -14,7 +14,6 @@ LIMIT 10
 
 
 
-
 SELECT c.customer_name,o.order_id,r.reason_returned
 FROM orders AS o
 	INNER JOIN customers AS c
